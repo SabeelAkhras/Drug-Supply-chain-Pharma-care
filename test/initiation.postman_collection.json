@@ -1,0 +1,505 @@
+{
+	"info": {
+		"_postman_id": "f1364179-e064-4580-b2b6-1815e70fef35",
+		"name": "initiation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+{
+			"name": "designer-addToWallet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "certificatePath",
+							"value": "/home/upgrad/workspace/pharma-net/network/crypto-config/peerOrganizations/designer.pharma-network.com/users/Admin@designer.pharma-network.com/msp/signcerts/Admin@designer.pharma-network.com-cert.pem",
+							"type": "text"
+						},
+						{
+							"key": "privateKeyPath",
+							"value": "/home/upgrad/workspace/pharma-net/network/crypto-config/peerOrganizations/designer.pharma-network.com/users/Admin@designer.pharma-network.com/msp/keystore/d3e4221b79e0c4ff9d385be08299c68c0789c6a5a54b83318539cb92e7dde9ce_sk",
+							"type": "text"
+						},
+						{
+							"key": "orgRole",
+							"value": "designer",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4000/addToWallet",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"addToWallet"
+					]
+				}
+			},
+			"response": []
+		},
+{
+			"name": "tester-addToWallet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "certificatePath",
+							"value": "/home/upgrad/workspace/pharma-net/network/crypto-config/peerOrganizations/tester.pharma-network.com/users/Admin@tester.pharma-network.com/msp/signcerts/Admin@tester.pharma-network.com-cert.pem",
+							"type": "text"
+						},
+						{
+							"key": "privateKeyPath",
+							"value": "/home/upgrad/workspace/pharma-net/network/crypto-config/peerOrganizations/tester.pharma-network.com/users/Admin@tester.pharma-network.com/msp/keystore/d3e4221b79e0c4ff9d385be08299c68c0789c6a5a54b83318539cb92e7dde9ce_sk",
+							"type": "text"
+						},
+						{
+							"key": "orgRole",
+							"value": "tester",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4000/addToWallet",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"addToWallet"
+					]
+				}
+			},
+			"response": []
+		},
+{
+			"name": "regulator-addToWallet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "certificatePath",
+							"value": "/home/upgrad/workspace/pharma-net/network/crypto-config/peerOrganizations/regulator.pharma-network.com/users/Admin@regulator.pharma-network.com/msp/signcerts/Admin@regulator.pharma-network.com-cert.pem",
+							"type": "text"
+						},
+						{
+							"key": "privateKeyPath",
+							"value": "/home/upgrad/workspace/pharma-net/network/crypto-config/peerOrganizations/regulator.pharma-network.com/users/Admin@regulator.pharma-network.com/msp/keystore/d3e4221b79e0c4ff9d385be08299c68c0789c6a5a54b83318539cb92e7dde9ce_sk",
+							"type": "text"
+						},
+						{
+							"key": "orgRole",
+							"value": "regulator",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4000/addToWallet",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"addToWallet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "distributer-addToWallet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "certificatePath",
+							"value": "/home/upgrad/workspace/pharma-net/network/crypto-config/peerOrganizations/distributor.pharma-network.com/users/Admin@distributor.pharma-network.com/msp/signcerts/Admin@distributor.pharma-network.com-cert.pem",
+							"type": "text"
+						},
+						{
+							"key": "privateKeyPath",
+							"value": "/home/upgrad/workspace/pharma-net/network/crypto-config/peerOrganizations/distributor.pharma-network.com/users/Admin@distributor.pharma-network.com/msp/keystore/b3b164d8ffcfcaaf4ec2b73319c2537810e9eb0e67c92b6c38a829272a4dab58_sk",
+							"type": "text"
+						},
+						{
+							"key": "orgRole",
+							"value": "distributor",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4000/addToWallet",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"addToWallet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "manufacturer-addToWallet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "certificatePath",
+							"value": "/home/upgrad/workspace/pharma-net/network/crypto-config/peerOrganizations/manufacturer.pharma-network.com/users/Admin@manufacturer.pharma-network.com/msp/signcerts/Admin@manufacturer.pharma-network.com-cert.pem",
+							"type": "text"
+						},
+						{
+							"key": "privateKeyPath",
+							"value": "/home/upgrad/workspace/pharma-net/network/crypto-config/peerOrganizations/manufacturer.pharma-network.com/users/Admin@manufacturer.pharma-network.com/msp/keystore/8f2922148c0fbd6343b802be866911f9d14081c38063582496b011820f1f0f85_sk",
+							"type": "text"
+						},
+						{
+							"key": "orgRole",
+							"value": "manufacturer",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4000/addToWallet",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"addToWallet"
+					]
+				}
+			},
+			"response": []
+		},
+		
+		{
+			"name": "consumer-addToWallet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "certificatePath",
+							"value": "/home/upgrad/workspace/pharma-net/network/crypto-config/peerOrganizations/consumer.pharma-network.com/users/Admin@consumer.pharma-network.com/msp/signcerts/Admin@consumer.pharma-network.com-cert.pem",
+							"type": "text"
+						},
+						{
+							"key": "privateKeyPath",
+							"value": "/home/upgrad/workspace/pharma-net/network/crypto-config/peerOrganizations/consumer.pharma-network.com/users/Admin@consumer.pharma-network.com/msp/keystore/0234b9869d2c67f38dd24350352f5da3f79a7d4744b2ce2ff09c2803c823fd00_sk",
+							"type": "text"
+						},
+						{
+							"key": "orgRole",
+							"value": "consumer",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4000/addToWallet",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"addToWallet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "manufacturer-Omarpharma-registerCompany",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "orgRole",
+							"value": "manufacturer",
+							"type": "text"
+						},
+						{
+							"key": "companyCRN",
+							"value": "MAN001",
+							"type": "text"
+						},
+						{
+							"key": "companyName",
+							"value": "Omar Pharma",
+							"type": "text"
+						},
+						{
+							"key": "location",
+							"value": "Rammallah",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4000/registerCompany",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"registerCompany"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "distributor-VGPharma-registerCompany",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "orgRole",
+							"value": "distributor",
+							"type": "text"
+						},
+						{
+							"key": "companyCRN",
+							"value": "DIST001",
+							"type": "text"
+						},
+						{
+							"key": "companyName",
+							"value": "VG Pharma",
+							"type": "text"
+						},
+						{
+							"key": "location",
+							"value": "Ramaalah",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4000/registerCompany",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"registerCompany"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+		
+		
+		{
+			"name": "manufacturer-Paracetamol-001-addDrug",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "orgRole",
+							"value": "manufacturer",
+							"type": "text"
+						},
+						{
+							"key": "drugName",
+							"value": "Paracetamol",
+							"type": "text"
+						},
+						{
+							"key": "serialNo",
+							"value": "001",
+							"type": "text"
+						},
+						{
+							"key": "mfgDate",
+							"value": "01-15-2023",
+							"type": "text"
+						},
+						{
+							"key": "expDate",
+							"value": "01-15-2026",
+							"type": "text"
+						},
+						{
+							"key": "companyCRN",
+							"value": "MAN001",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4000/addDrug",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"addDrug"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "manufacturer-Paracetamol-002-addDrug",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "orgRole",
+							"value": "manufacturer",
+							"type": "text"
+						},
+						{
+							"key": "drugName",
+							"value": "Paracetamol",
+							"type": "text"
+						},
+						{
+							"key": "serialNo",
+							"value": "002",
+							"type": "text"
+						},
+						{
+							"key": "mfgDate",
+							"value": "01-15-2023",
+							"type": "text"
+						},
+						{
+							"key": "expDate",
+							"value": "02-15-2024",
+							"type": "text"
+						},
+						{
+							"key": "companyCRN",
+							"value": "MAN001",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4000/addDrug",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"addDrug"
+					]
+				}
+			},
+			"response": []
+		},
+		
+	],
+	"protocolProfileBehavior": {}
+}
