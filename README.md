@@ -92,8 +92,8 @@ Below post man scripts to be executed for each of the functions mentioned below.
         </tr>
         <tr>
             <td align="center"> SC5 </td>	p
-            <td align="center">  Create shipment by Manufacturer</td>
-            <td align="center"> part-b-2-manufacturer-createShipment</td>
+            <td align="center">  Create shipment by Manufacturer </td>
+            <td align="center"> part-b-2-manufacturer-createShipment </td>
         </tr>
       
     </tbody>
