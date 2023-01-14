@@ -15,19 +15,15 @@ class PharmaNetContract extends Contract {
 		super('org.pharma-network.pharmanet');
 
 		//Global variables which contains various organisation value.  This will be used to restrict methods to be called by certain organisation 
+		global.designerOrg = 'designer.pharma-network.com';
+		global.testerOrg = 'tester.pharma-network.com';
+		global.regulatorOrg = 'regulator.pharma-network.com';
 		global.manufacturerOrg = 'manufacturer.pharma-network.com';
 		global.distributorOrg = 'distributor.pharma-network.com';
-		global.retailerOrg = 'retailer.pharma-network.com';
-		global.consumerOrg = 'consumer.pharma-network.com';
-		global.transporterOrg = 'transporter.pharma-network.com';
-	}
 	
-	/**
-	 * @description Internal prvate method to validate whether initiator is allowed to access certain method.  This method will be called in all public methods.
-	 * @param {*} ctx The transaction context object
-	 * @param {*} initiators Array of initiator organisation for which the access to the method to be allowed
-	 * @returns hierarchKey of the organisation which will be used to determine whether certain operations are performed as per their hierarchy in the network
-	 */
+		global.consumerOrg = 'consumer.pharma-network.com';
+		}
+	
 	validateInitiator(ctx, initiators)
 	{
 		const initiatorID = ctx.clientIdentity.getX509Certificate();
@@ -75,23 +71,11 @@ class PharmaNetContract extends Contract {
 		console.log('Pharma Network Smart Contract Instantiated');
 	}
 
-	/**
-	 * @description Method to register a company in the network to perform various operations on the drug.
-	 * @param {*} ctx The transaction context object
-	 * @param {*} companyCRN Unique CRN of a company which needs to be registered
-	 * @param {*} companyName Name of the company
-	 * @param {*} location Location of the company situated
-	 * @param {*} organisationRole Organisation role in the network 
-	 * @access Manufacturer, Distributor, Retailer, Transporter
-	 * @returns newly created company object
-	 */
+
 	async registerCompany(ctx, companyCRN, companyName, location, organisationRole)
 	{
 
-		let hierarchyKey = this.validateInitiator(ctx,[manufacturerOrg, distributorOrg, retailerOrg, transporterOrg]);
-
-		// Create a new composite key for the new company request
-		//NOTE: As per the requirement the composite key to be created with companyCRN and companyName, but in other modules , especially in addDrug there is no arguement for companyName.  Hence creating composite key only with companyCRN
+		let hierarchyKey = this.validateInitiator(ctx,[manufacturerOrg, distributorOrg, regulatorOrg, testerOrg, designerOrg]);
 		const requestKey = ctx.stub.createCompositeKey('org.pharma-network.com.pharmanet.company' , [companyCRN]);
 
 		console.log(requestKey);
@@ -113,17 +97,7 @@ class PharmaNetContract extends Contract {
 		return companyObject;
 	}
 
-	/**
-	 * @description Method to add new drug information in the network , requested by Manufacturer.
-	 * @param {*} ctx The transaction context object
-	 * @param {*} drugName Drug name
-	 * @param {*} serialNo Unique serial no of the drug
-	 * @param {*} mfgDate Manufacturing date
-	 * @param {*} expDate Expiry date
-	 * @param {*} companyCRN Manufacturer company CRN
-	 * @access Manufacturer
-	 * @returns Newly added drug details
-	 */
+
 	async addDrug(ctx, drugName, serialNo, mfgDate, expDate, companyCRN)
 	{
 
@@ -179,18 +153,6 @@ class PharmaNetContract extends Contract {
 			throw new Error('Company is not registered in the Pharma Network' );
 		}
 	}
-
-
-	/**
-	 * @description Method to create Purchase Order for particular drug into the network
-	 * @param {*} ctx The transaction context object
-	 * @param {*} buyerCRN Unique CRN of buyer company (Distributor or Retailer)
-	 * @param {*} sellerCRN Unique CRN of seller company (Manufacturer or Distributor)
-	 * @param {*} drugName Name of drug
-	 * @param {*} quantity No. of quantity for which the PO has to be created
-	 * @access Distributor , Retailer
-	 * @returns purchase object created in the network
-	 */
 	async createPO(ctx, buyerCRN, sellerCRN, drugName, quantity)
 	{
 
@@ -235,17 +197,8 @@ class PharmaNetContract extends Contract {
 	}
 
 
-	/**
-	 * @description Method to create shipment for PO exists in the network, with in-transit status 
-	 * @param {*} ctx The transaction context object
-	 * @param {*} buyerCRN  Unique CRN of the buyer
-	 * @param {*} drugName Name of the drug
-	 * @param {*} listOfAssets List of serial no. (batch) shipped as part of PO
-	 * @param {*} transporterCRN Unique CRN of the transporter who will be shipping the drugs to distributor or seller
-	 * @access Manufacturer, Distributor
-	 * @returns Shipment object created in the network
-	 */
-	async createShipment(ctx, buyerCRN, drugName, listOfAssets,transporterCRN)
+	
+	async createShipment(ctx, buyerCRN, drugName, listOfAssets,regulatorCRN)
 	{
 
 		//Shipment request should be raised by seller , either Manufacturer or Distributor
@@ -284,13 +237,13 @@ class PharmaNetContract extends Contract {
 		const shipmentKey = ctx.stub.createCompositeKey('org.pharma-network.com.pharmanet.shipment', [buyerCRN, drugName]);
 
 		//In the requirement it's mentioned that composite key for transporter to be created using transporterName and transporterCRN, but we are not receiving transporter name in this method.
-		const transporterKey = ctx.stub.createCompositeKey('org.pharma-network.com.pharmanet.company', [transporterCRN]);
+		const regulatorKey = ctx.stub.createCompositeKey('org.pharma-network.com.pharmanet.company', [transporterCRN]);
 
 		let shipmentObject={
 			shipmentID: shipmentKey,
 			creator: ctx.clientIdentity.getX509Certificate(),
 			assets: assets,
-			transporter:transporterKey,
+			regulator:regulatorKey,
 			status: 'in-transit',
 			createdAt: new Date()
 		}
@@ -314,15 +267,6 @@ class PharmaNetContract extends Contract {
 	}
 
 
-	/**
-	 * @description Method to update shipment status of PO as 'complete' and owner details of each drug with buyer CRN
-	 * @param {*} ctx The transaction context object
-	 * @param {*} buyerCRN Unique CRN of buyer who raised PO
-	 * @param {*} drugName name of drug
-	 * @param {*} transporterCRN Unique CRN of transporter who is shipping the drugs
-	 * @access Transporter
-	 * @returns Details of each drug
-	 */
 	async updateShipment(ctx, buyerCRN, drugName, transporterCRN)
 	{
 
@@ -383,20 +327,11 @@ class PharmaNetContract extends Contract {
 
 	}
 
-	/**
-	 * @description Method to sell the drug to consumer by retailer
-	 * @param {*} ctx The transaction context object
-	 * @param {*} drugName Name of the drug
-	 * @param {*} serialNo Unique serial no. of drug
-	 * @param {*} retailerCRN Unique CRN of retailer who is selling the drug to consumer
-	 * @param {*} customerAadhar Name or Aadhar number of the consumer
-	 * @access Retailer
-	 * @returns Drug details with owner updated as consumer details received as input
-	 */
-	async retailDrug(ctx, drugName, serialNo,retailerCRN, customerAadhar)
+	
+	async designDrug(ctx, drugName, serialNo,designerCRN, customerAadhar)
 	{
 
-		//Only retailer can sell drug to consumer
+		//Only tester can testb drug 
 		this.validateInitiator(ctx, [retailerOrg]);
 
 		const retailerKey = ctx.stub.createCompositeKey('org.pharma-network.com.pharmanet.company', [retailerCRN]);
@@ -405,11 +340,10 @@ class PharmaNetContract extends Contract {
 		let drugBuffer= await ctx.stub.getState(drugKey).catch(err => console.log(err));
 		let drugObject= JSON.parse(drugBuffer.toString());
 
-		//In order to sell drug, current owner of drug should be retailer and retailer CRN should match with the owner details
-		if(drugObject.owner == retailerKey){
+		if(drugObject.owner == designerKey){
 			
-			//Update ownwer as customer adhaar or name
-			drugObject.owner = customerAadhar;
+			//Update ownwer as regulator adhaar or name
+			drugObject.owner = regulatorAadhar;
 
 			console.log(drugObject);
 
@@ -420,18 +354,11 @@ class PharmaNetContract extends Contract {
 
 		}
 		else{
-			throw new Error("Only owner of the property can sell the drug to consumer");
+			throw new Error("Only owner of the property can test the drug");
 		}
 	}
 
-	/**
-	 * @description Method to get complete history of drug
-	 * @param {*} ctx The transaction context object
-	 * @param {*} drugName Name of the drug
-	 * @param {*} serialNo Unique serial no. for which the history to be pulled
-	 * @returns All the transactions associated with the given drug name and serial no.
-	 * @access any organisation can retrieve this information.
-	 */
+
 	async viewHistory(ctx,drugName, serialNo){
 
 		const drugKey = ctx.stub.createCompositeKey('org.pharma-network.com.pharmanet.drug',[drugName, serialNo]);
@@ -469,13 +396,7 @@ class PharmaNetContract extends Contract {
 		}
 	}
 
-	/**
-	 * @description Method to get current state of the drug
-	 * @param {*} ctx The transaction context object
-	 * @param {*} drugName Name of the drug
-	 * @param {*} serialNo Unique serial no. of drug for which the status to be pulled
-	 * @returns Drug details available in the ledger
-	 */
+	
 	async viewDrugCurrentState(ctx,drugName, serialNo){
 		const drugKey = ctx.stub.createCompositeKey('org.pharma-network.com.pharmanet.drug',[drugName, serialNo]);
 		let drugBuffer= await ctx.stub.getState(drugKey).catch(err => console.log(err));
