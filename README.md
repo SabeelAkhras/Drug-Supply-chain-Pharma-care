@@ -62,6 +62,7 @@ In order to create each organization into the wallet, we need to have two files.
 # Supply Chain Collection
 
 Below post man scripts to be executed for each of the functions mentioned below. 
+
 <table>
     <tbody>
         <tr>
@@ -95,6 +96,5 @@ Below post man scripts to be executed for each of the functions mentioned below.
             <td align="center">  Create shipment by Manufacturer </td>
             <td align="center"> part-b-2-manufacturer-createShipment </td>
         </tr>
-      
     </tbody>
 </table>
