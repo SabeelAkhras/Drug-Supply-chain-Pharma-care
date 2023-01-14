@@ -68,8 +68,7 @@ Below post man scripts to be executed for each of the functions mentioned below.
         <tr>
             <th> Method </th>
             <th> Functionality </th>
-            <th> Postman script </th>
-            
+            <th> Postman script </th>         
         </tr>
         <tr>
             <td align="center"> SC1 </td>
