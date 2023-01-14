@@ -91,7 +91,7 @@ Below post man scripts to be executed for each of the functions mentioned below.
             <td align="center"> part-b-1-distributor-createPO </td>       	
         </tr>
         <tr>
-            <td align="center"> SC5 </td>	p
+            <td align="center"> SC5 </td>
             <td align="center">  Create shipment by Manufacturer </td>
             <td align="center"> part-b-2-manufacturer-createShipment </td>
         </tr>
